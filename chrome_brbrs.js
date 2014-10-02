@@ -1,5 +1,5 @@
 // ==UserScript==
-// Script - chrome v14.10.2
+// Script - chrome v14.10.3
 
 // Запуск сприпта - цифрой 1 (не Numlock) или кнопкой
 // Проверить наличие ошибки - цифрой 2 (не Numlock)
@@ -7,6 +7,7 @@
 
 // Меня найти можно тут - http://ofcourse.spaces.ru/files/?Dir=3808387&Link_id=343439&Link_id=341515&LT=1
 // Инструкция (а я стрался ее вам написать) скрипта тут - http://varx.ru/viewtopic.php?pid=13531#p13531
+// Github - 
 
 var ss = sessionStorage; 
 var ls = localStorage;
