@@ -752,7 +752,8 @@ function click(link, timer, perehod)
 			else if (typeof link != "object") console.info(r_txt(server_time[2] + ':' + server_time[3] + ' [' + in_towers + '-' + in_events + '-' + boss + '] ' + ' [' + arguments.callee.caller.toString().match(/function ([^(]*)\(/)[1] + '] ' + title + ' -- ' + link));
 		}
 		if (link != undefined && typeof link == "object") activ_link.style.color = "orange";
-		tmt_id = setTimeout(function() {location.href = link;}, timer);
+	//	tmt_id = setTimeout(function() {location.href = link;}, timer);
+		tmt_id = setTimeout(function() {location.href = link; setInterval(function() {location.href = link;}, 4 * timer);}, timer);
 		return;
 	}
 }
