@@ -7,7 +7,7 @@
 
 // Меня найти можно тут - http://ofcourse.spaces.ru/files/?Dir=3808387&Link_id=343439&Link_id=341515&LT=1
 // Инструкция (а я стрался ее вам написать) скрипта тут - http://varx.ru/viewtopic.php?pid=13531#p13531
-// Github - 
+// Github - https://github.com/lonehead/chrome
 
 var ss = sessionStorage; 
 var ls = localStorage;
