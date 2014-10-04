@@ -838,7 +838,7 @@ function fill_data()
 		if (dl_reg_hm.test(rus_t)) dungeon[14] = dl_reg_hm.exec(rus_t)[1]*60 + (comp_time + 60);	
 	}
 	
-	if (title.match(/Варвары/) && !rus_t.match(/Забытый склеп|Тихая роща|Владения Медузы|Темные подвалы|Долина орков/)) dungeon[13] = 23 * 3600 + 60 * 60 + 60;
+	if (title.match(/Варвары/) && dung_game == '') dungeon[13] = 23 * 3600 + 60 * 60 + 60;
 	else if (title.match(/Варвары/) && !rus_t.match(/лья откроются через/)) dungeon[13] = 0;
 	if (title.match(/Варвары/) && !rus_t.match(/ли откроются через/)) dungeon[14] = 0;
 	ss.dungeon = dungeon;
@@ -1114,8 +1114,8 @@ function fill_var()
 			if (/Логово Геррода/.test(atext)) logovo = a[i];
 			if (/Великие битвы/.test(atext)) greats = a[i];
 			if (/Войти в замок/.test(atext)) vzamok = a[i];
-			if (/OgreDungeonPage/.test(a[i].href)) dung_game = a[i];
-			if (/DuelPage/.test(a[i].href)) duel = a[i];
+			if (/OgreDungeonPage$/.test(a[i].href)) dung_game = a[i];
+			if (/DuelPage$/.test(a[i].href)) duel = a[i];
 
 			if (/Вернуться в бой/.test(atext)) vboy = a[i];
 			if (/Покинуть очередь/.test(atext)) pokinut_ochered = a[i];
@@ -1355,7 +1355,7 @@ function test_location()
 	if (title.match(/Голова дракона|Сердце титана|Гроза миров|Крепость духа/i)) {in_events = 11; drink_hp = set_drink_hp[2];}
 	if (title.match(/Исцеление предков|Зеркало боли|Источник познания|Колыбель жизни/i)) {in_events = 11; drink_hp = set_drink_hp[2];}
 
-	if (title.match(/Забытый склеп|Тихая роща|Владения Медузы|Темные подвалы|Долина орков|Дуэль/i)) in_events = 12;
+	if (title.match(/Забытый склеп|Тихая роща|Владения Медузы|Темные подвалы|Долина орков|Ущелье големов|Скалы грифонов|Башня призраков|Потерянный замок|Мрачная чаща|Дуэль/i) in_events = 12;
 
 
 	if (in_events != 0) set_attack_tower = 0;
