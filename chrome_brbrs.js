@@ -1,5 +1,5 @@
 // ==UserScript==
-// Script - chrome v14.10.3
+// Script - chrome v14.10.2
 
 // Запуск сприпта - цифрой 1 (не Numlock) или кнопкой
 // Проверить наличие ошибки - цифрой 2 (не Numlock)
@@ -501,7 +501,7 @@ if (document.addEventListener)
 
 		var name_scrl = ["Подарок алхимика", "Медитация", "Секрет победы", "Рефлекс тигра", "Ярость смертника", "Ледяной щит", "Жажда познания", "Адреналин", "Опустошение", "Сила критона", "Уверенное дыхание", "Нарастающий гнев", "Стойкость", "Стратегический ум"];
 		var castle_name = ["Голова дракона", "Сердце титана", "Гроза миров", "Крепость духа", "Исцеление предков", "Зеркало боли", "Источник познания", "Колыбель жизни"];
-		var dung_name = ["Пещерный стражник", "Грот Гарпий", "Пещера мантикоры", "Лабиринт минотавра", "Легендарный дракон", "Мифический дракон", "Храм Немезиды", "Каменный тролль", "Обитель Зодиака", "Трофейный дракон", "Долина Великанов", "Святилище предков", "Потерянный Легион"];
+		var dung_name = ["Пещерный стражник", "Грот Гарпий", "Пещера мантикоры", "Лабиринт минотавра", "Легендарный дракон", "Мифический дракон", "Храм Немезиды", "Каменный тролль", "Обитель Зодиака", "Трофейный дракон", "Долина великанов", "Святилище предков", "Потерянный Легион"];
 		var dung_loc = ["guardian", "harpy", "manticora", "minotaur", "irondragon", "dragonDungeon", "nemezida", "stoneTroll", "zodiac", "dragonTrophy", "giantvalley", "greatBoss", "legion"];
 		var some_name = ["Башня мудрости", "Статуя критона", "Академия клана"];
 		var terra_name = ["Грозовой Перевал", "Тысяча Гор", "Седые Холмы", "Каменный Лес", "Пепельная Пустыня", "Черное Озеро", "Могильные Топи", "Голые Камни", "Покинутые Степи", "Забытая Долина", "Черные Скалы", "Выжженные земли", "Мертвый остров", "Радужный Оазис", "Пещеры Мантикор", "Золотые Пески", "Ущелье Драконов", "Самоцветные Копи", "Мрачные низины", "Серебряные реки", "Зеленые луга", "Старый рудник", "Спящий вулкан", "Лазурные поля", "Каньон ветров", "Светлое плато", "Полуостров скелетов", "Молодой залив" ];
@@ -1228,7 +1228,7 @@ function fill_var()
 			if (/Каменный тролль/.test(atext)) peshera[7] = i;
 			if (/Обитель Зодиака/.test(atext)) peshera[8] = i;
 			if (/Трофейный дракон/.test(atext)) peshera[9] = i;
-			if (/Долина Великанов/.test(atext)) peshera[10] = i;
+			if (/Долина великанов/.test(atext)) peshera[10] = i;
 			if (/Святилище предков/.test(atext)) peshera[11] = i;
 			if (/Потерянный Легион/.test(atext)) peshera[12] = i;
 
@@ -2628,7 +2628,7 @@ function proverka_loga()
 		}
 		if (klan != '' && !title.match("Почта"))
 		{
-			for (var j = 1; j <= 28; j++) if (span_i.match(terra_writ[j], i) && (in_towers != 0 || title.match(/Территория/i)) && mark[3] != 1 && !title.match(terra_name[j-1])) {ss.territory = j; mpage(terra_name[j-1] + ' / ' + ss.territory, 0); break span_arr;}
+			for (var j = 1; j <= 28; j++) if (span_i.match(terra_writ[j], i) && (in_towers != 0 || title.match(/Территория/i)) && mark[3] != 1 && !title.match(terra_name[j-1])) {ss.territory = j; break span_arr;}
 		
 			if (u_class == "воин")
 			{
@@ -4342,7 +4342,7 @@ function add_info()
 		if (ss.dheal == 1) div_b += ' <b><a class="minor" id="h_link" style="text-decoration:none; color:yellow" href="javascript://">Жгу энку</a></b>';
 		if (ss.dheal == 2) div_b += ' <b><a class="minor" id="h_link" style="text-decoration:none; color:yellow" href="javascript://">Лечу и жгу</a></b>';
 	}
-	else if (title.match(/Долина Великанов/i) && u_class == "медик")
+	else if (title.match(/Долина великанов/i) && u_class == "медик")
 	{
 		if (ss.dheal == undefined || ss.dheal > 1) ss.dheal = 0;
 		if (ss.dheal == 0) div_b += ' <b><a class="minor" id="h_link" style="text-decoration:none; color:yellow" href="javascript://">Лечу</a></b>';
@@ -4350,7 +4350,7 @@ function add_info()
 	}
 	else if (in_events != 0 || in_towers != 0) ss.removeItem('dheal');
 
-	if (title.match(/Долина Великанов/i) && u_class == "воин")
+	if (title.match(/Долина великанов/i) && u_class == "воин")
 	{
 		if (ss.atk == undefined) ss.atk = 0;
 
@@ -4476,7 +4476,7 @@ function add_info()
 	}
 	if (document.getElementById("h_link") != undefined) h_link.onclick = function()
 	{
-		if (title.match(/Долина Великанов/i))
+		if (title.match(/Долина великанов/i))
 		{
 			if (ss.dheal == 0) {ss.dheal = 1; h_link.textContent = "Лечу цель";}
 			else {ss.dheal = 0; h_link.textContent = "Лечу";}
@@ -4498,7 +4498,7 @@ function add_info()
 			else if (ss.atk == 3) {ss.atk = 4; w_link.textContent = "Гарм.Ц+Н";}
 			else {ss.atk = 0; w_link.textContent = " ХП+";}
 		}
-		else if (title.match(/Долина Великанов/i))
+		else if (title.match(/Долина великанов/i))
 		{
 			if (ss.atk == 0) {ss.atk = 1; w_link.textContent = "Бью Япитера";}
 			else if (ss.atk == 1) {ss.atk = 2; w_link.textContent = "Бью Эпитера";}
