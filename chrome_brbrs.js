@@ -388,6 +388,7 @@ if (document.addEventListener)
 		var stan_link = ['', '', '', '', '', ''];
 		var item_link = ['', '', '', '', '', ''];
 		var klan = '', klan_moderate = '', altar = '', zaiti_altar = '', altarserebro = '', altarjelezo = '', altarcastles = '', altar_all_castles = '', altarwell = '';
+		var journey_buy8 = '', journey_buy24 = '';
 		var use_full = '';
 		var ustalost = '', snyat_ustalost = '';
 		var quest = '', take = '';
@@ -995,8 +996,8 @@ function fill_var()
 			if (/Премиум \+(\d+)%/i.test(rus_t)) ss.prem = 1;
 			else ss.removeItem('prem');
 
-			if (/усталость: -(\d+)%/i.test(rus_t) && set_ustal && utt_max <= time_serv && utt_min >= time_serv) ss.ustal = 1;
-			else if (/усталость: -(\d+)%/i.test(rus_t) && !set_ustal) ss.ustal = 1;
+			if (/усталость: -(\d+)%/i.test(rus_t) && set_ustal == 1 && utt_max <= time_serv && utt_min >= time_serv) ss.ustal = 1;
+			else if (/усталость: -(\d+)%/i.test(rus_t) && set_ustal == 0) ss.ustal = 1;
 			else ss.removeItem('ustal');
 		}
 	}
@@ -1021,6 +1022,8 @@ function fill_var()
 			if (/sacrifaceMoneyCastle1Link/.test(a[i].href)) altarcastle = a[i];
 			if (/sacrifaceMoneyCastle2Link/.test(a[i].href)) altar_all_castle = a[i];
 			if (/alterCastlesAndWellPageLink/.test(a[i].href)) altarwell = a[i];
+			if (/buy8Link/.test(a[i].href)) journey_buy8 = a[i];
+			if (/buy24Link/.test(a[i].href)) journey_buy24 = a[i];
 			if (/user\/rack/.test(a[i].href)) bag = a[i];
 			if (/user\/body/.test(a[i].href) ) body = a[i];
 			if (/toStoreLink/.test(a[i].href)) v_sunduk = a[i];
@@ -1305,6 +1308,7 @@ function fill_var()
 	}
 	if (ss.ustal != 1) return_loc = return_alive;
 	else return_loc = return_tired;
+	if (bonus[9] > 0) return_loc = 1;
 }
 function test_location()
 {
@@ -1859,7 +1863,14 @@ function to_altar()
 		else if (boss == 0 && vboy == '' && (in_events == 0 || (title.match(/Арена|Выживание/) && pokinut_ochered == '' && (noviu_boy != '' || vstat_v_ochered != '' || rus_t.match("Вы погибли, ждите окончания боя"))))) click(user, tmt)
 	}
 	if (klan == '')	{bonus[8] = 0; mark[16] = 0}
-	ss.bonus = bonus
+	ss.bonus = bonus;
+
+	if (set_ustal == 2 && bonus[9] <= 0 && ss.ustal != 1 && mark[10] == 0)
+	{
+		if (title.match(/Поход/) && journey_buy24 != '' && !rus_t.match(/Будет активен/)) click(journey_buy24, tmt)
+		else if (title.match(/Варвары/) && journey != '') click(journey, tmt)
+		else if (boss == 0 && vboy == '' && (in_events == 0 || (title.match(/Арена|Выживание/) && pokinut_ochered == '' && (noviu_boy != '' || vstat_v_ochered != '' || rus_t.match("Вы погибли, ждите окончания боя"))))) click(na_glavnuy, tmt)
+	}
 }
 function no_prem_altar()
 {
@@ -3904,7 +3915,7 @@ function user_check()
 
 		if (Number(ss.missed) > 3 && (!title.match(/Мой герой|защита от ботов!/) || !/user($|\/check)/.test(a[i].href)) && user != '') click(user, tmt);
 
-		if (set_ustal && title.match(/Мой герой|Усталость/i) && /(\d+):(\d+)/.test(tire_max) && /(\d+):(\d+)/.test(tire_min))
+		if (set_ustal == 1 && title.match(/Мой герой|Усталость/i) && /(\d+):(\d+)/.test(tire_max) && /(\d+):(\d+)/.test(tire_min))
 		{
 			var t_max = /(\d+):(\d+)/.exec(tire_max);
 			var utt_max = t_max[1] * 3600 + t_max[2] * 60;
@@ -3995,7 +4006,7 @@ function bugs()
 	for (var i = 0; i < document.getElementsByClassName('feedbackPanelERROR').length; i++)
 	{
 		var feedback = r_txt(document.getElementsByClassName('feedbackPanelERROR')[i].textContent);
-		if (feedback.match('У Вас не хватает денег')) mark[10] = comp_time + r_num(1000, 5000);
+		if (feedback.match('У Вас не хватает (денег|золота)')) mark[10] = comp_time + r_num(1000, 5000);
 		if (feedback.match('У Вас не хватает железа')) mark[11] = comp_time + r_num(1000, 5000);
 		if (feedback.match('В сундуке нет места')) mark[7] = 1;
 		if (feedback.match(/Сюда можно только с|Для входа необходим/))
