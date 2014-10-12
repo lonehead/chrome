@@ -2071,7 +2071,7 @@ function to_boss()
 		ss.removeItem("to_boss");
 		click(na_glavnuy, obnovlenie);
 	}
-	else if (err_d == 1) click(na_glavnuy, obnovlenie);
+	else if (title.match(/Вход закрыт/i) && rus_t.match(/Бой начался, пещера закрыта/i) || err_d == 1) click(na_glavnuy, obnovlenie);
 	
 	if (ss.to_boss == undefined && ss.territory == undefined || ss.territory == undefined)
 	{
