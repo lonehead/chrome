@@ -1361,7 +1361,7 @@ function test_location()
 	if (title.match(/Голова дракона|Сердце титана|Гроза миров|Крепость духа/i)) {in_events = 11; drink_hp = set_drink_hp[2];}
 	if (title.match(/Исцеление предков|Зеркало боли|Источник познания|Колыбель жизни/i)) {in_events = 11; drink_hp = set_drink_hp[2];}
 
-	if (title.match(/Забытый склеп|Тихая роща|Владения Медузы|Темные подвалы|Долина орков|Ущелье големов|Скалы грифонов|Башня призраков|Потерянный замок|Мрачная чаща|Дуэль/i)) in_events = 12;
+	if (title.match(/Забытый склеп|Тихая роща|Владения Медузы|Темные подвалы|Долина орков|Ущелье големов|Скалы грифонов|Башня призраков|Потерянный замок|Мрачная чаща|Дуэль/i)) {in_events = 12; drink_hp = set_drink_hp[12];}
 
 
 	if (in_events != 0) set_attack_tower = 0;
@@ -1727,12 +1727,12 @@ function razobrat_veshi()
 				mark[20] = 1;
 				if (title.match("Мои умения")) mark[20] = 0;
 				else if (title.match("Мой герой") && abilities != '') click(abilities, tmt);
-				else if ((in_towers != 0 || err_d == 1) && (in_events == 0 || (title.match(/Арена|Выживание/) && pokinut_ochered == '' && (noviu_boy != '' || vstat_v_ochered != '' || rus_t.match("Ваш герой погиб, ждите окончания боя"))))) click(na_glavnuy, tmt);
+				else if ((in_towers != 0 || err_d == 1) && (in_events == 0 || (title.match(/Арена|Выживание/) && pokinut_ochered == '' && (noviu_boy != '' || vstat_v_ochered != '' || rus_t.match("Твой герой погиб, ждите окончания боя"))))) click(na_glavnuy, tmt);
 				else click(user, tmt);
 			}
 			function to_bag()
 			{
-				if ((in_towers != 0 || err_d == 1) && (in_events == 0 || (title.match(/Арена|Выживание/) && pokinut_ochered == '' && (noviu_boy != '' || vstat_v_ochered != '' || rus_t.match("Ваш герой погиб, ждите окончания боя"))))) click(na_glavnuy, tmt);
+				if ((in_towers != 0 || err_d == 1) && (in_events == 0 || (title.match(/Арена|Выживание/) && pokinut_ochered == '' && (noviu_boy != '' || vstat_v_ochered != '' || rus_t.match("Твой герой погиб, ждите окончания боя"))))) click(na_glavnuy, tmt);
 				else if (bag != '') click(bag, tmt);
 				else click(user, tmt);
 			}
@@ -1882,7 +1882,7 @@ function no_prem_altar()
 		{
 			ss.altar = no_prem_alt[0];
 		}
-		if (no_prem_altar[1] != 0 && i == 1 && attack == '' && !rus_t.match(/через (\d+) сек|Ваш герой погиб/) && title.match('Арена')) 
+		if (no_prem_altar[1] != 0 && i == 1 && attack == '' && !rus_t.match(/через (\d+) сек|Твой герой погиб/) && title.match('Арена')) 
 		{
 			ss.altar = no_prem_alt[1];
 		}
@@ -1898,7 +1898,7 @@ function no_prem_altar()
 		{
 			ss.altar = no_prem_alt[4];
 		}
-		if (no_prem_altar[5] != 0 && i == 5 && attack == '' &&!rus_t.match(/через (\d+) сек|Ваш герой погиб/) && title.match('Выживание')) 
+		if (no_prem_altar[5] != 0 && i == 5 && attack == '' &&!rus_t.match(/через (\d+) сек|Твой герой погиб/) && title.match('Выживание')) 
 		{
 			ss.altar = no_prem_alt[5];
 		} 
@@ -1971,7 +1971,7 @@ function castle_buff()
 			break;
 		}
 	}
-	if ((in_events == 0 || (title.match(/Арена|Выживание/) && pokinut_ochered == '' && (noviu_boy != '' || vstat_v_ochered != '' || rus_t.match("Ваш герой погиб, ждите окончания боя")))) && boss == 0 && in_events != 11 && mark[10] == 0) for (var i = 0; i <= 7; i++)
+	if ((in_events == 0 || (title.match(/Арена|Выживание/) && pokinut_ochered == '' && (noviu_boy != '' || vstat_v_ochered != '' || rus_t.match("Твой герой погиб, ждите окончания боя")))) && boss == 0 && in_events != 11 && mark[10] == 0) for (var i = 0; i <= 7; i++)
 	{
 		if (set_buffs[i] == 1 && (bonus[i] - comp_time) <= 0) click('/castle/' + (i + 1) + '/', spt);
 	}
@@ -2045,7 +2045,7 @@ function get_castles()
 	function to_castles(x)
 	{
 		if (title.match('Варвары') && castles != '') click(castles, tmt);
-		else if (boss == 0 && (in_events == 0 || (title.match(/Арена|Выживание/) && pokinut_ochered == '' && (noviu_boy != '' || vstat_v_ochered != '' || rus_t.match("Ваш герой погиб, ждите окончания боя")))) && vboy == '') click(na_glavnuy, tmt);
+		else if (boss == 0 && (in_events == 0 || (title.match(/Арена|Выживание/) && pokinut_ochered == '' && (noviu_boy != '' || vstat_v_ochered != '' || rus_t.match("Твой герой погиб, ждите окончания боя")))) && vboy == '') click(na_glavnuy, tmt);
 	}
 }
 function to_boss()
@@ -2080,11 +2080,11 @@ function to_boss()
 		else if (small_boss[1] == 1 && lvl > 20 && dungeon[2] == 0) ss.to_boss = 2;
 		else if (small_boss[0] == 1 && lvl > 15 && dungeon[1] == 0) ss.to_boss = 1;
 	}
-	if (vboy == '' && (in_events == 0 || (title.match(/Арена|Выживание/) && pokinut_ochered == '' && (noviu_boy != '' || vstat_v_ochered != '' || rus_t.match("Ваш герой погиб, ждите окончания боя")))) && ss.to_boss != undefined && ss.territory==undefined) v_pesheru(ss.to_boss);
+	if (vboy == '' && (in_events == 0 || (title.match(/Арена|Выживание/) && pokinut_ochered == '' && (noviu_boy != '' || vstat_v_ochered != '' || rus_t.match("Твой герой погиб, ждите окончания боя")))) && ss.to_boss != undefined && ss.territory==undefined) v_pesheru(ss.to_boss);
 
 	function v_pesheru(x)
 	{
-		if (rus_t.match("Ваш герой погиб в бою") && obnovit != '') click(na_glavnuy, tmt);
+		if (rus_t.match("Твой герой погиб в бою") && obnovit != '') click(na_glavnuy, tmt);
 		var reg = new RegExp(dung_name[x], "i");
 		if (title.match(reg) && ss.to_boss == x) ss.removeItem("to_boss");
 		else if (dungeon[x] == 0)
@@ -2211,7 +2211,7 @@ function get_territory()
 	if (!/14|17|20/.test(server_time[1])) {ss.removeItem('territory'); mark[3] = 0;}
 	if ((title.match("Вход закрыт") && rus_t.match(/Война за территории доступна только для клановых игроков|Набег начался, Вы не успели/i))) mark[3] = 1;
 	if (title.match('Территория') && na_terr != '') click(na_terr, tmt);
-	else if (boss == 0 && (in_events == 0 || title.match(/Территория/) && attack == '' && heal == '' || (title.match(/Арена|Выживание/) && pokinut_ochered == '' && (noviu_boy != '' || vstat_v_ochered != '' || rus_t.match("Ваш герой погиб, ждите окончания боя")))) && vboy == '' && ss.territory != undefined && server_time[1].match(/14|17|20/) && server_time[2] >= 27) click('/territory/' + ss.territory + '/');
+	else if (boss == 0 && (in_events == 0 || title.match(/Территория/) && attack == '' && heal == '' || (title.match(/Арена|Выживание/) && pokinut_ochered == '' && (noviu_boy != '' || vstat_v_ochered != '' || rus_t.match("Твой герой погиб, ждите окончания боя")))) && vboy == '' && ss.territory != undefined && server_time[1].match(/14|17|20/) && server_time[2] >= 27) click('/territory/' + ss.territory + '/');
 
 	for (var i = 0; i <= 27; i++) if (title.match(terra_name[i]) && ss.territory == i + 1) ss.removeItem('territory');
 
@@ -2272,7 +2272,7 @@ function get_battle()
 {
 	var rand = r_num(4);
 
-	if ((in_events == 0 || (title.match(/Арена|Выживание/) && pokinut_ochered == '' && (noviu_boy != '' || vstat_v_ochered != '' || rus_t.match("Ваш герой погиб, ждите окончания боя")))) && boss == 0 && vboy == '')
+	if ((in_events == 0 || (title.match(/Арена|Выживание/) && pokinut_ochered == '' && (noviu_boy != '' || vstat_v_ochered != '' || rus_t.match("Твой герой погиб, ждите окончания боя")))) && boss == 0 && vboy == '')
 	{
 		if (set_cari && lvl >= 25 && (server_time[1] == 19 && server_time[2] >= 07 && server_time[2] <= 10 || server_time[1] == 13 && server_time[2] >= 37 && server_time[2] < 40))
 		{
@@ -2680,7 +2680,7 @@ function proverka_loga()
 				else
 				{
 					var ur_hp = /\d+/.exec(span_i);
-					all_damage += Number(ur_hp);
+					if (!span_i.match(/по эн\./)) all_damage += Number(ur_hp); else all_damage += Number(ur_hp * 0.3);
 				}
 			}
 		}
@@ -3827,14 +3827,14 @@ function select_event()
 	if (damage != '' && hp_vraga != '' && Number(damage) > Number(hp_vraga)) cdt = r_num(1500, 2400);
 
 
-	if (drink_hp != 0 && buttle != '' && (t_but < (cdt_def - 300)) && (drink_hp <= 2 && drink_hp * ss.last_dmg >= uroven_hp || drink_hp <= 200 && drink_hp * life >= uroven_hp  || drink_hp > 200 && drink_hp <= uroven_hp) && in_towers != 0) click(buttle, t_but + spt, 0);
-	else if (drink_hp != 0 && set_drink_b[0] == 1 && buttle != '' && t_but < (cdt_def - 300) && (drink_hp <= 2 && drink_hp * ss.last_dmg >= uroven_hp || drink_hp <= 200 && drink_hp * life >= uroven_hp  || drink_hp > 200 && drink_hp <= uroven_hp) && in_events != 0 && title.match(/Арена/)) click(buttle, t_but + spt, 0);
-	else if (drink_hp != 0 && set_drink_b[0] == 2 && buttle != '' && t_but < (cdt_def - 300) && (drink_hp <= 2 && drink_hp * ss.last_dmg >= uroven_hp || drink_hp <= 200 && drink_hp * life >= uroven_hp  || drink_hp > 200 && drink_hp <= uroven_hp) && in_events != 0 && title.match(/Арена/) && ss.arena_games < 51) click(buttle, t_but + spt, 0);
-	else if (drink_hp != 0 && set_drink_b[0] == 3 && buttle != '' && t_but < (cdt_def - 300) && (drink_hp <= 2 && drink_hp * ss.last_dmg >= uroven_hp || drink_hp <= 200 && drink_hp * life >= uroven_hp  || drink_hp > 200 && drink_hp <= uroven_hp) && in_events != 0 && title.match(/Арена/) && ss.arena_games <= min_battle[0]) click(buttle, t_but + spt, 0);
-	else if (drink_hp != 0 && set_drink_b[1] == 1 && buttle != '' && t_but < (cdt_def - 300) && (drink_hp <= 2 && drink_hp * ss.last_dmg >= uroven_hp || drink_hp <= 200 && drink_hp * life >= uroven_hp  || drink_hp > 200 && drink_hp <= uroven_hp) && in_events != 0 && title.match(/Выживание/)) click(buttle, t_but + spt, 0);
-	else if (drink_hp != 0 && set_drink_b[1] == 2 && buttle != '' && t_but < (cdt_def - 300) && (drink_hp <= 2 && drink_hp * ss.last_dmg >= uroven_hp || drink_hp <= 200 && drink_hp * life >= uroven_hp  || drink_hp > 200 && drink_hp <= uroven_hp) && in_events != 0 && title.match(/Выживание/) && ss.surv_games < 51) click(buttle, t_but + spt, 0);
-	else if (drink_hp != 0 && set_drink_b[1] == 3 && buttle != '' && t_but < (cdt_def - 300) && (drink_hp <= 2 && drink_hp * ss.last_dmg >= uroven_hp || drink_hp <= 200 && drink_hp * life >= uroven_hp  || drink_hp > 200 && drink_hp <= uroven_hp) && in_events != 0 && title.match(/Выживание/) && ss.surv_games <= min_battle[1]) click(buttle, t_but + spt, 0);
-	else if (drink_hp != 0 && buttle != '' && t_but < (cdt_def - 300) && (drink_hp <= 2 && drink_hp * ss.last_dmg >= uroven_hp || drink_hp <= 200 && drink_hp * life >= uroven_hp  || drink_hp > 200 && drink_hp <= uroven_hp) && in_events != 0 && !title.match(/Арена|Выживание/)) click(buttle, t_but + spt, 0);
+	if (drink_hp != 0 && buttle != '' && (t_but < (cdt_def - 300)) && (drink_hp <= 2 && drink_hp * ss.last_dmg >= uroven_hp && ss.last_dmg != undefined || drink_hp > 2 && drink_hp <= 200 && Number(drink_hp * life / 100) >= uroven_hp  || drink_hp > 200 && drink_hp >= uroven_hp) && in_towers != 0) click(buttle, t_but + spt, 0);
+	else if (drink_hp != 0 && set_drink_b[0] == 1 && buttle != '' && t_but < (cdt_def - 300) && (drink_hp <= 2 && drink_hp * ss.last_dmg >= uroven_hp && ss.last_dmg != undefined || drink_hp > 2 && drink_hp <= 200 && Number(drink_hp * life / 100) >= uroven_hp  || drink_hp > 200 && drink_hp >= uroven_hp) && in_events != 0 && title.match(/Арена/)) {click(buttle, t_but + spt, 0); console.error("A");}
+	else if (drink_hp != 0 && set_drink_b[0] == 2 && buttle != '' && t_but < (cdt_def - 300) && (drink_hp <= 2 && drink_hp * ss.last_dmg >= uroven_hp && ss.last_dmg != undefined || drink_hp > 2 && drink_hp <= 200 && Number(drink_hp * life / 100) >= uroven_hp  || drink_hp > 200 && drink_hp >= uroven_hp) && in_events != 0 && title.match(/Арена/) && ss.arena_games < 51) click(buttle, t_but + spt, 0);
+	else if (drink_hp != 0 && set_drink_b[0] == 3 && buttle != '' && t_but < (cdt_def - 300) && (drink_hp <= 2 && drink_hp * ss.last_dmg >= uroven_hp && ss.last_dmg != undefined || drink_hp > 2 && drink_hp <= 200 && Number(drink_hp * life / 100) >= uroven_hp  || drink_hp > 200 && drink_hp >= uroven_hp) && in_events != 0 && title.match(/Арена/) && ss.arena_games <= min_battle[0]) click(buttle, t_but + spt, 0);
+	else if (drink_hp != 0 && set_drink_b[1] == 1 && buttle != '' && t_but < (cdt_def - 300) && (drink_hp <= 2 && drink_hp * ss.last_dmg >= uroven_hp && ss.last_dmg != undefined || drink_hp > 2 && drink_hp <= 200 && Number(drink_hp * life / 100) >= uroven_hp  || drink_hp > 200 && drink_hp >= uroven_hp) && in_events != 0 && title.match(/Выживание/)) {click(buttle, t_but + spt, 0); console.error("S");}
+	else if (drink_hp != 0 && set_drink_b[1] == 2 && buttle != '' && t_but < (cdt_def - 300) && (drink_hp <= 2 && drink_hp * ss.last_dmg >= uroven_hp && ss.last_dmg != undefined || drink_hp > 2 && drink_hp <= 200 && Number(drink_hp * life / 100) >= uroven_hp  || drink_hp > 200 && drink_hp >= uroven_hp) && in_events != 0 && title.match(/Выживание/) && ss.surv_games < 51) click(buttle, t_but + spt, 0);
+	else if (drink_hp != 0 && set_drink_b[1] == 3 && buttle != '' && t_but < (cdt_def - 300) && (drink_hp <= 2 && drink_hp * ss.last_dmg >= uroven_hp && ss.last_dmg != undefined || drink_hp > 2 && drink_hp <= 200 && Number(drink_hp * life / 100) >= uroven_hp  || drink_hp > 200 && drink_hp >= uroven_hp) && in_events != 0 && title.match(/Выживание/) && ss.surv_games <= min_battle[1]) click(buttle, t_but + spt, 0);
+	else if (drink_hp != 0 && buttle != '' && t_but < (cdt_def - 300) && (drink_hp <= 2 && drink_hp * ss.last_dmg >= uroven_hp && ss.last_dmg != undefined || drink_hp > 2 && drink_hp <= 200 && Number(drink_hp * life / 100) >= uroven_hp  || drink_hp > 200 && drink_hp >= uroven_hp) && in_events != 0 && !title.match(/Арена|Выживание/)) click(buttle, t_but + spt, 0);
 	else if (set_energ_low[0] == 1 && buttle != '' && t_but < (cdt_def - 300) && uroven_en <= 0 && in_events != 0 && in_towers != 0) click(buttle, t_but + spt, 0);
 	else if (set_energ_low[2] == 1 && buttle != '' && t_but < (cdt_def - 300) && uroven_en <= 0 && in_events != 0 && title.match(/Арена/)) click(buttle, t_but + spt, 0);
 	else if (set_energ_low[2] == 2 && buttle != '' && t_but < (cdt_def - 300) && uroven_en <= 0 && in_events != 0 && title.match(/Арена/) && ss.arena_games < 51) click(buttle, t_but + spt, 0);
@@ -3946,7 +3946,7 @@ function udacha_()
 
 	if (title.match(/Колодец удачи/i))
 	{
-		if (rus_t.match(/Сегодня ты уже получил подарок/i))
+		if (rus_t.match(/Сегодня ты уже получил(а)? подарок/i))
 		{
 			ss.udacha = 1;
 			click(na_glavnuy, tmt);
@@ -3969,7 +3969,7 @@ function udacha_()
 		else if (ss.udacha == 1) click(na_glavnuy, tmt);
 	}
 	if (title.match(/Варвары/i) && ss.udacha == 0 && well != '') click(well, tmt);
-	else if (ss.udacha == 0 && boss == 0 && (in_events == 0 || (title.match(/Арена|Выживание/) && pokinut_ochered == '' && (noviu_boy != '' || vstat_v_ochered != '' || rus_t.match("Ваш герой погиб, ждите окончания боя")))) && vboy == '') click(na_glavnuy, tmt);
+	else if (ss.udacha == 0 && boss == 0 && (in_events == 0 || (title.match(/Арена|Выживание/) && pokinut_ochered == '' && (noviu_boy != '' || vstat_v_ochered != '' || rus_t.match("Твой герой погиб, ждите окончания боя")))) && vboy == '') click(na_glavnuy, tmt);
 
 }
 function bugs()
@@ -3999,8 +3999,8 @@ function bugs()
 
 		if (rus_t.match(arn_txt)) ss.arena_games = parseInt(/(\d+)\//.exec(rus_t.match(arn_txt)));
 		if (rus_t.match(sur_txt)) ss.surv_games = parseInt(/(\d+)\//.exec(rus_t.match(sur_txt)));
-		if (rus_t.match("Ваш герой погиб, ждите окончания боя") && title.match(/Арена/i)) ss.arena_games++;
-		if (rus_t.match("Ваш герой погиб, ждите окончания боя") && title.match(/Выживание/i)) ss.surv_games++;
+		if (rus_t.match("Твой герой погиб, ждите окончания боя") && title.match(/Арена/i)) ss.arena_games++;
+		if (rus_t.match("Твой герой погиб, ждите окончания боя") && title.match(/Выживание/i)) ss.surv_games++;
 	}
 	if (title.match(/Варвары/) && rus_t.match(/Арена \(\+\)/) && ss.arena_games >= 5) ss.removeItem('arena_games');
 	if (title.match(/Варвары/) && rus_t.match(/Выживание \(\+\)/) && ss.surv_games >= 5) ss.removeItem('surv_games');
@@ -4084,7 +4084,7 @@ function bugs()
 
 	if (rus_t.match(/Вы бились храбро, но погибли/) && title.match(/Цари Горы/i)) click(na_glavnuy, tmt);
 	else if (rus_t.match(/Вы бились храбро, но погибли|Битва началась, Логово закрыто/) && title.match("Логово Геррода")) click(na_glavnuy, tmt);
-	else if ((title.match(/Выживание/) && mark[23] == 1 && mark[24] != 0 || title.match(/Арена/) && mark[24] == 1 && mark[23] != 0) && (attack == '' && !rus_t.match(/через(: | )(\d+)/) && pokinut_ochered == '' && (noviu_boy != '' || vstat_v_ochered != '' || rus_t.match("Ваш герой погиб, ждите окончания боя")))) click(na_glavnuy, tmt);
+	else if ((title.match(/Выживание/) && mark[23] == 1 && mark[24] != 0 || title.match(/Арена/) && mark[24] == 1 && mark[23] != 0) && (attack == '' && !rus_t.match(/через(: | )(\d+)/) && pokinut_ochered == '' && (noviu_boy != '' || vstat_v_ochered != '' || rus_t.match("Твой герой погиб, ждите окончания боя")))) click(na_glavnuy, tmt);
 	else if ((title.match(/Арена/) && return_loc != 3 && mark[18] == 0 && mark[17] == 0 || title.match(/Выживание/) && return_loc != 2 && mark[17] == 0 && mark[18] == 0) && attack == '' && return_loc != 4 && !rus_t.match(/через(: | )(\d+)/)) click(na_glavnuy, tmt);
 	else if (title.match(/Арена|Выживание/) && pokinut_ochered == '' && (noviu_boy != '' || vstat_v_ochered != '' || rus_t.match("Твой герой погиб, ждите окончания боя")) && return_loc >= 0 && return_loc <= 1 || in_towers != 0 && return_loc == 0) click(na_glavnuy, tmt);
 	else if (title.match(/Территория/) && rus_t.match(/Битва претендентов/) && terr_green != 1) click(na_glavnuy, tmt);
@@ -4092,7 +4092,7 @@ function bugs()
 	else if (title.match(/Территория/) && rus_t.match(/Финальная битва/) && terr_blue == 1) ss.attack_terr = 0;
 	else if (title.match(/Битва героев|турнир/i) && attack == '' && rus_t.match(/Для участия в (турнире|Битве героев) необходимо получить/i)) {mark[8] = 1; click(na_glavnuy, tmt);}
 	else if (in_events != 0 && attack == '' && heal == '' && rus_t.match(/Твой герой погиб, ждите окончания боя|Битва началась, Вы не успели|Битва завершилась/i) && !title.match(/Арена|Выживание/i) && !rus_t.match(/через(: | )(\d+)/)) click(na_glavnuy, tmt);
-	else if (in_events != 0 && attack == '' && heal == '' && rus_t.match(/Твой герой погиб и выбывает из турнира|Ваша команда погибла и выбывает из турнира|Турнир завершился|Турнир уже начался/)) click(na_glavnuy, tmt);
+	else if (in_events != 0 && attack == '' && heal == '' && rus_t.match(/Твой герой погиб и выбывает из турнира|Твоя команда погибла и выбывает из турнира|Турнир завершился|Турнир уже начался/)) click(na_glavnuy, tmt);
 	else if (in_events == 12 && attack == '' && rus_t.match(/\[на главную\]/)) click(na_glavnuy, tmt);
 
 	if (title.match(/Территория/i) && u_class == "медик") set_heal_select = 0;
@@ -4201,7 +4201,7 @@ function dnd_event()
 			if (krt_not[1] < 14 && 2 * t_krit > cdt) berserk = '';
 		}
 	}
-	if (drink_hp != 0 && buttle != '' && t_but < (cdt - 300) && (drink_hp <= 2 && drink_hp * ss.last_dmg >= uroven_hp || drink_hp <= 200 && drink_hp * life >= uroven_hp  || drink_hp > 200 && drink_hp <= uroven_hp)) click(buttle, t_but + spt, 0);
+	if (drink_hp != 0 && buttle != '' && t_but < (cdt - 300) && (drink_hp <= 2 && drink_hp * ss.last_dmg >= uroven_hp && ss.last_dmg != undefined || drink_hp > 2 && drink_hp <= 200 && Number(drink_hp * life / 100) >= uroven_hp  || drink_hp > 200 && drink_hp >= uroven_hp)) click(buttle, t_but + spt, 0);
 	else if (set_energ_low[1] == 1 && buttle != '' && t_but < (cdt - 300) && uroven_en <= 0) click(buttle, t_but + spt, 0);
 	else if (vstat_v_ochered != '') click(vstat_v_ochered, tmt, 1);
 	else if (obnovit != '' && title.match("Чат клана") && ss.to_chat == 1) click(obnovit, cdt_stop, 1);
@@ -4469,7 +4469,6 @@ function add_info()
 		mpage(info_button, 0);
 	}
 	mpage(info, 0);
-	mpage("PEEEEEEEEEEEEE", 2);
 
 	var t = setInterval(my_timer, 57);
 
@@ -4603,7 +4602,7 @@ function select_abil()
 					ss.set_abil = abil_num[i];
 					ss.change_set += 'g';
 				}
-				if (i == 1 && attack == '' && !rus_t.match(/через (\d+) сек|Ваш герой погиб/) && title.match('Арена')) 
+				if (i == 1 && attack == '' && !rus_t.match(/через (\d+) сек|Твой герой погиб/) && title.match('Арена')) 
 				{
 					ss.set_abil = abil_num[i];
 					ss.change_set += 'a';
@@ -4623,7 +4622,7 @@ function select_abil()
 					ss.set_abil = abil_num[i];
 					ss.change_set += 'a';
 				}
-				if (i == 5 && attack == '' &&!rus_t.match(/через (\d+) сек|Ваш герой погиб/) && title.match('Выживание')) 
+				if (i == 5 && attack == '' &&!rus_t.match(/через (\d+) сек|Твой герой погиб/) && title.match('Выживание')) 
 				{
 					ss.set_abil = abil_num[i];
 					ss.change_set += 'a';
@@ -4702,7 +4701,7 @@ function select_stan()
 					ss.set_stan = stan_num[i];
 					ss.change_set += 'g';
 				}
-				if (i == 1 && attack == '' && !rus_t.match(/через (\d+) сек|Ваш герой погиб/) && title.match('Арена')) 
+				if (i == 1 && attack == '' && !rus_t.match(/через (\d+) сек|Твой герой погиб/) && title.match('Арена')) 
 				{
 					ss.set_stan = stan_num[i];
 					ss.change_set += 's';
@@ -4722,7 +4721,7 @@ function select_stan()
 					ss.set_stan = stan_num[i];
 					ss.change_set += 's';
 				}
-				if (i == 5 && attack == '' &&!rus_t.match(/через (\d+) сек|Ваш герой погиб/) && title.match('Выживание')) 
+				if (i == 5 && attack == '' &&!rus_t.match(/через (\d+) сек|Твой герой погиб/) && title.match('Выживание')) 
 				{
 					ss.set_stan = stan_num[i];
 					ss.change_set += 's';
@@ -4804,7 +4803,7 @@ function select_body()
 					ss.set_body = body_num[i];
 					click(na_glavnuy, tmt);
 				}
-				if (i == 1 && attack == '' && !rus_t.match(/через (\d+) сек|Ваш герой погиб/) && title.match('Арена')) 
+				if (i == 1 && attack == '' && !rus_t.match(/через (\d+) сек|Твой герой погиб/) && title.match('Арена')) 
 				{
 					ss.set_body = body_num[i];
 					ss.change_set += 'b';
@@ -4824,7 +4823,7 @@ function select_body()
 					ss.set_body = body_num[i];
 					ss.change_set += 'b';
 				}
-				if (i == 5 && attack == '' &&!rus_t.match(/через (\d+) сек|Ваш герой погиб/) && title.match('Выживание')) 
+				if (i == 5 && attack == '' &&!rus_t.match(/через (\d+) сек|Твой герой погиб/) && title.match('Выживание')) 
 				{
 					ss.set_body = body_num[i];
 					ss.change_set += 'b';

@@ -13,7 +13,7 @@ if (ss.setngs == undefined) ss.setngs = '';
 
 //////////////// НАСТРОЙКА ИНДИВИДУАЛЬНОГО ПЕРСОНАЖА /////////////////////////
 
-var username  = "screaming abyss"; // Логин ОБЯЗАТЕЛЬНО!
+var username  = "kjlhg"; // Логин ОБЯЗАТЕЛЬНО!
 if (username != '' && !ss.setngs.match(username)) ss.setngs += username + ','; // НЕ ТРОГАТЬ
 if (ss.nick == username)
 {
