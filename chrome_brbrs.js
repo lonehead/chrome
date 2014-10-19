@@ -2561,36 +2561,36 @@ function proverka_loga()
 		for (var x = 0; x < div_x.length; x++) if (div_x.textContent.match(/получил/)) alert();
 	}
 */
-	var dmg_1 = new RegExp(nick + ' (ударил|полечил) (\\D+)\s?(\\D+)?\s?(\\D+)? (по кам. щиту )?на (\\d+) (крит)?|' + nick + ' сжёг (\\d+) (крит)?', "i");
+	var dmg_1 = new RegExp(nick + ' (ударил(а)?|полечил(а)?) (\\D+)\s?(\\D+)?\s?(\\D+)? (по кам. щиту )?на (\\d+) (крит)?|' + nick + ' (сжёг|сожгла) (\\d+) (крит)?', "i");
 	if (dmg_1.test(rus_t))
 	{
 		var realvalue = (dmg_1.exec(rus_t))[0];
 		real_dmg = /\d+/.exec((dmg_1.exec(rus_t))[0]);
-		if (/сжёг \d+ (крит)?/.test(realvalue)) dmg_text = 1;
-		if (/полечил /.test(realvalue)) dmg_text = 2;
-		//	if (/ударил Гарма на \d+/.test(realvalue)) dmg_text=3;
-		//	if (/ударил Цербера на \d+/.test(realvalue)) dmg_text=4;
-		//	if (/ударил Немезиду на \d+/.test(realvalue)) dmg_text=5;
+		if (/(сжёг|сожгла) \d+ (крит)?/.test(realvalue)) dmg_text = 1;
+		if (/полечил(а)? /.test(realvalue)) dmg_text = 2;
+		//	if (/ударил(а)? Гарма на \d+/.test(realvalue)) dmg_text=3;
+		//	if (/ударил(а)? Цербера на \d+/.test(realvalue)) dmg_text=4;
+		//	if (/ударил(а)? Немезиду на \d+/.test(realvalue)) dmg_text=5;
 	}
 
-	var dmg_2 = new RegExp('Вы промахнулись|Лечить некого|' + nick + ' (ударил|полечил) (\\D+)\s?(\\D+)?\s?(\\D+)? (по кам. щиту )?на (\\d+) (крит)?|' + nick + ' сжёг (\\d+) (крит)?', "ig");
+	var dmg_2 = new RegExp('Ты промахнул(ся|ась)|Лечить некого|' + nick + ' (ударил(а)?|полечил(а)?) (\\D+)\s?(\\D+)?\s?(\\D+)? (по кам. щиту )?на (\\d+) (крит)?|' + nick + ' (сжёг|сожгла) (\\d+) (крит)?', "ig");
 	if (dmg_2.test(rus_t))
 	{
 		var str = '';
 		var result = rus_t.match(dmg_2);
 
-		for (var i = 0; i < result.length; i++) if (!str.match(nick + ' полечил')) str += result[i];
+		for (var i = 0; i < result.length; i++) if (!str.match(nick + ' полечил(а)?')) str += result[i];
 
 		var ln_reg = new RegExp('Лечить некого', "g");
 
 		if (ln_reg.test(str)) {nekogo_lechit = str.match(ln_reg).length;}
 	}
-	var dmg_3 = new RegExp('Вы промахнулись|Лечить некого|' + nick + ' (ударил|полечил) (\\D+)\s?(\\D+)?\s?(\\D+)? (по кам. щиту )?на (\\d+) (крит)?|' + nick + ' сжёг (\\d+) (крит)?', "i");
+	var dmg_3 = new RegExp('Ты промахнул(ся|ась)|Лечить некого|' + nick + ' (ударил(а)?|полечил(а)?) (\\D+)\s?(\\D+)?\s?(\\D+)? (по кам. щиту )?на (\\d+) (крит)?|' + nick + ' (сжёг|сожгла) (\\d+) (крит)?', "i");
 	if (ss.missed == undefined) ss.missed = 0;
 	if (dmg_3.test(rus_t) && !firstvalue && ss.perehod == 0)
 	{
 		var firstvalue = (dmg_3.exec(rus_t))[0];
-		if (/Вы промахнулись/.test(firstvalue))
+		if (/Ты промахнул(ся|ась)/.test(firstvalue))
 		{
 			if (ss.perehod != 1) ss.missed++;
 			if (vrag_med == '0' && vrag_mech == '0' && attack_kochev == '') ss.perehod = 1;
@@ -2601,7 +2601,7 @@ function proverka_loga()
 			var dmg = /\d+/.exec(firstvalue); damage = dmg;
 			if (attack_kochev != '') dmg = dmg * 1.7;
 			if (/крит/.test(firstvalue)) dmg = dmg * 0.7;
-			if (/полечил/.test(firstvalue)) dmg = dmg * 0.7;
+			if (/полечил(а)?/.test(firstvalue)) dmg = dmg * 0.7;
 
 			if (/по эн\. щиту/.test(firstvalue)) pronikaushii = '';
 			if (/по эн\. щиту/.test(firstvalue) && activ_pronik) good_target = 2;
@@ -2657,7 +2657,7 @@ function proverka_loga()
 	{
 		var span_i = r_txt(span[i].textContent);
 
-		if (span[i].style.color.match(/chocolate|rgb\(210, 105, 30\)|rgb\(0, 204, 255\)/) && (span_i.match(/(ударил|укуси(л|ла)) (Вас|тебя) (по кам. щиту |по эн. щиту )?на (\d+)( крит)?/i) || span_i.match(nick + ' (включил|использовал)')) && !span_i.match(/(Стражник|Геррод|кочевник) ударил Вас/i))
+		if (span[i].style.color.match(/chocolate|rgb\(210, 105, 30\)|rgb\(0, 204, 255\)/) && (span_i.match(/(ударил(а)?|укуси(л|ла)) (Вас|тебя) (по кам. щиту |по эн. щиту )?на (\d+)( крит)?/i) || span_i.match(nick + ' (включил|использовал)')) && !span_i.match(/(Стражник|Геррод|кочевник) ударил(а)? Вас/i))
 		{
 			var otrajenie = 0;
 			if (span[i].getElementsByTagName('a')[0] != undefined && !span_i.match(nick + ' (включил|использовал)'))
