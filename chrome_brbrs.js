@@ -1898,7 +1898,7 @@ function no_prem_altar()
 		{
 			ss.altar = no_prem_alt[4];
 		}
-		if (no_prem_altar[5] != 0 && i == 5 && attack == '' &&!rus_t.match(/через (\d+) сек|Твой герой погиб/) && title.match('Выживание')) 
+		if (no_prem_altar[5] != 0 && i == 5 && attack == '' && !rus_t.match(/через (\d+) сек|Твой герой погиб/) && title.match('Выживание')) 
 		{
 			ss.altar = no_prem_alt[5];
 		} 
@@ -4055,7 +4055,7 @@ function bugs()
 		if (vremya_bitvi[2] == 0 && vremya_bitvi[3] == 0 && obnovlenie > (vremya_bitvi[4] * 1000) && obnovit != '') obnovlenie = (vremya_bitvi[3] * 1000) + spt;
 
 		if (in_events != 0 && attack == '' && heal == '' && rus_t.match(/Битва завершилась!/i) && (Number(vremya_bitvi[1]) > 0 || Number(vremya_bitvi[2]) > 15)) click(na_glavnuy, tmt);
-		if (((Number(vremya_bitvi[2]) != 0 || Number(vremya_bitvi[3]) > 6) && vremya_bitvi[4] <= 55) && in_events == 11 && !rus_t.match(/Вы получили/) && ss.buff < 10)
+		if (((Number(vremya_bitvi[2]) != 0 || Number(vremya_bitvi[3]) > 6) && vremya_bitvi[4] <= 55) && in_events == 11 && !rus_t.match(/Ты получил(а)?/) && ss.buff < 10)
 		{
 			obnovlenie = (15000) + spt;
 			ss.buff++;
